@@ -58,7 +58,7 @@ export function CourseDiscovery() {
         </div>
 
         {visibleCourses.length > 0 ? (
-          <div className="mt-14 grid justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3">
             {visibleCourses.map((course) => (
               <CourseCard course={course} key={course.id} />
             ))}
