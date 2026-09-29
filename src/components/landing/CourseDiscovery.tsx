@@ -18,7 +18,7 @@ export function CourseDiscovery() {
   }, [selectedCategory]);
 
   return (
-    <section className="bg-white px-6 py-20 sm:py-24" id="courses">
+    <section className="bg-white px-6 py-20 sm:pb-20 sm:pt-24" id="courses">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-center">
           <h2 className="font-heading text-ink mx-auto max-w-[588px] text-[36px] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-heading-m">
