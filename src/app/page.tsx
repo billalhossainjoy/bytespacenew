@@ -1,4 +1,5 @@
 import { Hero } from "@/components/landing/Hero";
+import { PartnerStrip } from "@/components/landing/PartnerStrip";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       >
         <Hero />
       </div>
+      <PartnerStrip />
     </main>
   );
 }
