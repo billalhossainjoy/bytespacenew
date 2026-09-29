@@ -21,11 +21,11 @@ export function CourseDiscovery() {
     <section className="bg-white px-6 py-20 sm:py-24" id="courses">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-center">
-          <h2 className="mx-auto max-w-[588px] text-[36px] font-semibold leading-[1.12] tracking-[-0.04em] text-[#040819] sm:text-[44px] sm:leading-[1.2]">
+          <h2 className="font-heading text-ink mx-auto max-w-[588px] text-[36px] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-heading-m">
             <span className="block">Discover Your Passion,</span>
             <span className="block">Build Your Skills</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-[917px] text-[18px] leading-[1.6] text-[#8a919c]">
+          <p className="text-body-l text-shuttle-gray-400 mx-auto mt-5 max-w-[917px]">
             At Bytespace Courses, we bring you closer to life-changing knowledge.
             Explore a variety of courses across different fields, from technology
             to the arts, and make a difference in your career and life.
@@ -40,12 +40,12 @@ export function CourseDiscovery() {
             return (
               <button
                 aria-pressed={selected}
-                className={`rounded-[24px] px-4 py-3 text-[14px] leading-[1.2] transition-colors ${
+                className={`text-label-s rounded-[24px] px-4 py-3 transition-colors ${
                   moreLink
                     ? "bg-transparent px-2 font-medium text-[#1549ea] hover:text-[#0d36b8]"
                     : selected
-                      ? "bg-[#bdff00] font-medium text-[#1d2515]"
-                      : "bg-[#f5f5f5] text-[#4d5057] hover:bg-[#e9e9eb]"
+                      ? "bg-electric-lime-500 font-medium text-[#1d2515]"
+                      : "bg-shuttle-gray-50 text-[#4d5057] hover:bg-[#e9e9eb]"
                 }`}
                 key={category}
                 onClick={() => setSelectedCategory(category)}

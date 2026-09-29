@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main id="home">
       <div
-        className="bg-[#0d45eb]"
+        className="bg-persian-blue-600"
         style={{
           backgroundImage:
             "linear-gradient(rgba(71, 130, 238, 0.52) 1px, transparent 1px), linear-gradient(90deg, rgba(71, 130, 238, 0.52) 1px, transparent 1px)",

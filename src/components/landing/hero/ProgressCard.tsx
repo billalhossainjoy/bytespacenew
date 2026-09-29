@@ -4,7 +4,7 @@ export function ProgressCard() {
       <p className="text-[14px] font-medium">Learning Progress</p>
       <p className="mt-1 text-[47px] font-bold leading-none tracking-[-0.04em]">55%</p>
       <div className="mt-4 h-2 rounded-full bg-[#f0f1f3]">
-        <div className="h-full w-[56%] rounded-full bg-[#bdff00]" />
+        <div className="bg-electric-lime-500 h-full w-[56%] rounded-full" />
       </div>
     </div>
   );

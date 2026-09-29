@@ -10,7 +10,7 @@ const partners = [
 
 export function PartnerStrip() {
   return (
-    <section aria-label="Our partners" className="bg-[#f7f7f7]">
+    <section aria-label="Our partners" className="bg-shuttle-gray-50">
       <div className="mx-auto grid min-h-[200px] max-w-[1200px] grid-cols-2 place-items-center gap-x-8 gap-y-7 px-6 py-10 sm:grid-cols-3 lg:grid-cols-5 lg:px-0 lg:py-0">
         {partners.map((partner, index) => (
           <Image

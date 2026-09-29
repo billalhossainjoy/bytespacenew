@@ -70,7 +70,7 @@ export function Header() {
 
   return (
     <header
-      className="relative z-50 bg-[#0d45eb] text-white"
+      className="relative z-50 bg-persian-blue-600 text-white"
       style={{
         backgroundImage:
           "linear-gradient(rgba(71, 130, 238, 0.52) 1px, transparent 1px), linear-gradient(90deg, rgba(71, 130, 238, 0.52) 1px, transparent 1px)",
@@ -91,7 +91,7 @@ export function Header() {
             src="/brand.png"
             width={29}
           />
-          <span className="text-[22px] font-bold tracking-[-0.04em]">
+          <span className="font-heading text-[22px] font-bold tracking-[-0.04em]">
             ByteSpace
           </span>
         </Link>

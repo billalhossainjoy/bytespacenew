@@ -8,7 +8,7 @@ export function Hero() {
       <MobileArtwork />
 
       <div className="relative z-40 mx-auto flex max-w-[1100px] flex-col items-center px-5 pt-[54px] text-center sm:px-8 lg:pt-[55px]">
-        <h1 className="max-w-[1000px] text-[42px] font-bold leading-[1.08] tracking-[-0.04em] sm:text-[54px] lg:scale-x-[1.05] lg:text-[72px] lg:leading-[1.12] lg:tracking-[-0.02em]">
+        <h1 className="font-heading max-w-[1000px] text-[42px] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[54px] lg:text-heading-l lg:scale-x-[1.05] lg:tracking-[-0.02em]">
           <span className="block">Get Access to Hundreds</span>
           <span className="block">Courses Available</span>
         </h1>
@@ -32,7 +32,7 @@ export function Hero() {
             />
           </label>
           <button
-            className="h-[52px] rounded-full bg-[#bdff00] px-7 text-[16px] font-medium text-[#101515] transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="bg-electric-lime-500 h-[52px] rounded-full px-7 text-[16px] font-medium text-[#101515] transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             type="submit"
           >
             Search

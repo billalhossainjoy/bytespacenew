@@ -27,7 +27,7 @@ export function CourseCard({ course }: CourseCardProps) {
       <div className="px-1 pb-1 pt-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h3 className="truncate text-[18px] font-semibold tracking-[-0.025em] text-[#202126]">
+            <h3 className="font-heading truncate text-[18px] font-semibold tracking-[-0.025em] text-[#202126]">
               {course.title}
             </h3>
             <p className="mt-1 text-[12px] text-[#8d919a]">
@@ -35,7 +35,7 @@ export function CourseCard({ course }: CourseCardProps) {
             </p>
           </div>
           <p className="shrink-0 pt-1 text-[13px] text-[#6f727a]">
-            {course.rating} <span className="text-[#bdff00]">★</span>
+            {course.rating} <span className="text-electric-lime-500">★</span>
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export function CourseCard({ course }: CourseCardProps) {
                 width={43}
               />
             ))}
-            <span className="-ml-2 grid size-7 place-items-center rounded-full border-2 border-white bg-[#bdff00] text-[9px] font-semibold text-[#1f2718]">
+            <span className="bg-electric-lime-500 -ml-2 grid size-7 place-items-center rounded-full border-2 border-white text-[9px] font-semibold text-[#1f2718]">
               2K+
             </span>
           </div>
