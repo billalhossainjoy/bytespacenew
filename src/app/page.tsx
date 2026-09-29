@@ -1,3 +1,4 @@
+import { CourseDiscovery } from "@/components/landing/CourseDiscovery";
 import { Hero } from "@/components/landing/Hero";
 import { PartnerStrip } from "@/components/landing/PartnerStrip";
 
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
       </div>
       <PartnerStrip />
+      <CourseDiscovery />
     </main>
   );
 }
