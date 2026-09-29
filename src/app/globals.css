@@ -83,3 +83,11 @@
     radial-gradient(circle at 94% 54%, rgb(116 151 255 / 28%), transparent 38%),
     #fff;
 }
+
+.creator-cta-lime {
+  filter: sepia(1) saturate(20) hue-rotate(21deg) brightness(0.88) contrast(1.08);
+}
+
+.creator-cta-white {
+  filter: grayscale(1) brightness(2.8);
+}
