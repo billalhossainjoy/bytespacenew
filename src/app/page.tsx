@@ -2,6 +2,7 @@ import { CourseDiscovery } from "@/components/landing/CourseDiscovery";
 import { Hero } from "@/components/landing/Hero";
 import { LearningPaths } from "@/components/landing/LearningPaths";
 import { PartnerStrip } from "@/components/landing/PartnerStrip";
+import { ProfessionalGrowth } from "@/components/landing/ProfessionalGrowth";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <PartnerStrip />
       <CourseDiscovery />
       <LearningPaths />
+      <ProfessionalGrowth />
     </main>
   );
 }
