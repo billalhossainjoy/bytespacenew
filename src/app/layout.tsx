@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Poppins } from "next/font/google";
 
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 import "./globals.css";
@@ -29,7 +30,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="font-body flex min-h-full flex-col">
         <Header />
-        {children}
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );
