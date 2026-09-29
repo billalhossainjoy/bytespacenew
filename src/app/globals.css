@@ -91,3 +91,11 @@
 .creator-cta-white {
   filter: grayscale(1) brightness(2.8);
 }
+
+.testimonials-background {
+  background:
+    radial-gradient(circle at 51% 25%, rgb(190 255 0 / 48%), transparent 31%),
+    radial-gradient(circle at 0% 100%, rgb(91 132 255 / 34%), transparent 35%),
+    radial-gradient(circle at 100% 48%, rgb(190 255 0 / 30%), transparent 34%),
+    #fff;
+}
