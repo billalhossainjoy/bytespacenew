@@ -1,9 +1,19 @@
+import { Hero } from "@/components/landing/Hero";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        Byte Space New
+    <main id="home">
+      <div
+        className="bg-[#0d45eb]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(71, 130, 238, 0.52) 1px, transparent 1px), linear-gradient(90deg, rgba(71, 130, 238, 0.52) 1px, transparent 1px)",
+          backgroundPosition: "0 -118px",
+          backgroundSize: "120px 120px",
+        }}
+      >
+        <Hero />
       </div>
-    </div>
+    </main>
   );
 }
