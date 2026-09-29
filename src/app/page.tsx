@@ -1,4 +1,5 @@
 import { CourseDiscovery } from "@/components/landing/CourseDiscovery";
+import { CourseCreator } from "@/components/landing/CourseCreator";
 import { Hero } from "@/components/landing/Hero";
 import { LearningPaths } from "@/components/landing/LearningPaths";
 import { PartnerStrip } from "@/components/landing/PartnerStrip";
@@ -22,6 +23,7 @@ export default function Home() {
       <CourseDiscovery />
       <LearningPaths />
       <ProfessionalGrowth />
+      <CourseCreator />
     </main>
   );
 }

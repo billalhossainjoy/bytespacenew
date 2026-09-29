@@ -5,9 +5,13 @@ const avatars = Array.from(
   (_, index) => `/assets/hero/avatars/avatar-${String(index + 1).padStart(2, "0")}.png`,
 );
 
-export function StudentsCard() {
+type StudentsCardProps = {
+  className?: string;
+};
+
+export function StudentsCard({ className = "left-[328px] top-[719px]" }: StudentsCardProps) {
   return (
-    <div className="absolute left-[328px] top-[719px] z-30 w-[258px] rounded-[16px] bg-white px-4 py-4 text-[#202126] shadow-[0_8px_28px_rgba(29,40,67,0.08)]">
+    <div className={`absolute z-30 w-[258px] rounded-[16px] bg-white px-4 py-4 text-[#202126] shadow-[0_8px_28px_rgba(29,40,67,0.08)] ${className}`}>
       <p className="text-[16px] font-medium leading-5">Happy Students</p>
       <p className="text-[12px] text-[#858995]">4.5 (240) <span className="text-electric-lime-500">★</span></p>
       <div className="mt-2 flex items-center">
