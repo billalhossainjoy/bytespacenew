@@ -71,7 +71,7 @@ export function CourseCard({ course }: CourseCardProps) {
               <svg aria-hidden="true" fill="none" height="14" viewBox="0 0 14 14" width="14">
                 <path d="M2 8.75v2.5M7 5.25v6M12 2.75v8.5" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
               </svg>
-              Beginner
+              {course.level}
             </span>
             <div className="flex items-center">
               {previewAvatars.map((avatar, index) => (

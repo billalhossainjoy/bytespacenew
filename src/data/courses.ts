@@ -9,6 +9,7 @@ export type Course = {
   rating: number;
   price: number;
   href: string;
+  level: "Beginner" | "Intermediate";
   slug: string;
 };
 
@@ -44,6 +45,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: "/courses/learn-figma-from-basic",
+    level: "Beginner",
     slug: "learn-figma-from-basic",
   },
   {
@@ -55,6 +57,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: courseDetailsPath,
+    level: "Intermediate",
     slug: "build-digital-asset",
   },
   {
@@ -66,6 +69,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: "/courses/power-of-big-data",
+    level: "Intermediate",
     slug: "power-of-big-data",
   },
   {
@@ -77,6 +81,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: "/courses/balancing-productivity-and-work",
+    level: "Beginner",
     slug: "balancing-productivity-and-work",
   },
   {
@@ -88,6 +93,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: "/courses/mastering-money-management",
+    level: "Beginner",
     slug: "mastering-money-management",
   },
   {
@@ -99,6 +105,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: "/courses/from-idea-to-startup-success",
+    level: "Intermediate",
     slug: "from-idea-to-startup-success",
   },
 ];
