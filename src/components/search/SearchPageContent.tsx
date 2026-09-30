@@ -53,8 +53,12 @@ function SearchIcon({ alt = "", file, height, width }: IconProps) {
   );
 }
 
-export function SearchPageContent() {
-  const [query, setQuery] = useState("");
+type SearchPageContentProps = {
+  initialQuery?: string;
+};
+
+export function SearchPageContent({ initialQuery = "" }: SearchPageContentProps) {
+  const [query, setQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState("Featured");
   const [level, setLevel] = useState("all");
   const [sort, setSort] = useState("relevant");

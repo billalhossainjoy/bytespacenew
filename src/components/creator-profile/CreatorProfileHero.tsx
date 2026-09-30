@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { CreatorFollowControls } from "@/components/creator-profile/CreatorFollowControls";
 import { courses } from "@/data/courses";
 
 const gridBackground = {
@@ -60,16 +61,7 @@ export function CreatorProfileHero() {
             </strong>
             Products
           </span>
-          <span className="rounded-full bg-white px-5 py-3 text-label-m text-shuttle-gray-950">
-            <strong className="mr-2 font-medium text-persian-blue-800">12</strong>
-            Followers
-          </span>
-          <button
-            className="ml-auto rounded-full bg-electric-lime-400 px-6 py-3 text-label-m font-medium text-shuttle-gray-950 transition-transform hover:scale-[1.03]"
-            type="button"
-          >
-            Follow
-          </button>
+          <CreatorFollowControls />
         </div>
       </div>
     </section>

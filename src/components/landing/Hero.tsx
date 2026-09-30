@@ -18,8 +18,9 @@ export function Hero() {
         </p>
 
         <form
-          action="#courses"
+          action="/search"
           className="mt-[58px] flex w-full max-w-[582px] flex-col gap-3 sm:flex-row sm:gap-4"
+          method="get"
         >
           <label className="flex h-[52px] flex-1 items-center gap-3 rounded-full bg-white px-6 text-left shadow-sm">
             <span className="sr-only">Search courses</span>
