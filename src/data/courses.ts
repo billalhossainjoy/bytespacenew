@@ -1,3 +1,5 @@
+import { courseDetailsPath } from "./courseDetails";
+
 export type Course = {
   id: number;
   title: string;
@@ -6,6 +8,7 @@ export type Course = {
   categories: string[];
   rating: number;
   price: number;
+  href: string;
 };
 
 export const courseCategories = [
@@ -39,6 +42,7 @@ export const courses: Course[] = [
     categories: ["UI/UX Design", "Graphic Design", "Web Development"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
   {
     id: 2,
@@ -48,6 +52,7 @@ export const courses: Course[] = [
     categories: ["Digital Illustration", "Animation", "Graphic Design"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
   {
     id: 3,
@@ -57,6 +62,7 @@ export const courses: Course[] = [
     categories: ["Data Science", "Web Development"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
   {
     id: 4,
@@ -66,6 +72,7 @@ export const courses: Course[] = [
     categories: ["Productivity", "Freelance & Entrepreneurship"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
   {
     id: 5,
@@ -75,6 +82,7 @@ export const courses: Course[] = [
     categories: ["Freelance & Entrepreneurship", "Marketing"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
   {
     id: 6,
@@ -84,5 +92,6 @@ export const courses: Course[] = [
     categories: ["Marketing", "Creative Marketing", "Social Media"],
     rating: 4.5,
     price: 25,
+    href: courseDetailsPath,
   },
 ];

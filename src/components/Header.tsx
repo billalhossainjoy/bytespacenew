@@ -2,12 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+
+import { courseDetailsPath } from "@/data/courseDetails";
 
 const navigation = [
   { label: "Home", href: "/" },
-  { label: "Courses", href: "/search" },
+  { label: "Courses", href: courseDetailsPath },
   { label: "Creators", href: "/#creators" },
+];
+
+const mobileNavigation = [
+  ...navigation,
+  { label: "Sign In", href: "/login" },
+  { label: "Join Us", href: "/register" },
 ];
 
 function BagIcon() {
@@ -59,14 +67,6 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const mobileNavigation = useMemo(
-    () => [
-      ...navigation,
-      { label: "Sign In", href: "/login" },
-      { label: "Join Us", href: "/register" },
-    ],
-    [],
-  );
 
   return (
     <header
@@ -99,7 +99,7 @@ export function Header() {
         <nav aria-label="Primary navigation" className="hidden md:block">
           <ul className="flex items-center gap-8 text-base">
             {navigation.map((item) => (
-              <li key={item.href} >
+              <li key={item.href}>
                 <Link
                   className="transition-opacity hover:opacity-70"
                   href={item.href}
@@ -145,16 +145,16 @@ export function Header() {
         >
           <ul className="space-y-1">
             {mobileNavigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    className="block rounded-lg px-3 py-2.5 font-medium hover:bg-neutral-100"
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              <li key={item.href}>
+                <Link
+                  className="block rounded-lg px-3 py-2.5 font-medium hover:bg-neutral-100"
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       ) : null}
