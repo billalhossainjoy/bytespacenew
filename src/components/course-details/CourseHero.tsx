@@ -3,11 +3,15 @@ import Image from "next/image";
 import { courseSummary } from "@/data/courseDetails";
 
 import { CourseIcon } from "./CourseIcon";
+import { CourseShareButton } from "./CourseShareButton";
 import { CourseSidebar } from "./CourseSidebar";
 
 const courseStats = [
   { icon: "level", label: courseSummary.level },
-  { icon: "star", label: courseSummary.rating },
+  {
+    icon: "star",
+    label: `${courseSummary.rating} (${courseSummary.reviewCount} reviews)`,
+  },
   { icon: "students", label: courseSummary.students },
 ] as const;
 
@@ -23,10 +27,7 @@ export function CourseHero() {
       }}
     >
       <div className="relative mx-auto max-w-[1200px] pt-14">
-        <button className="absolute right-0 top-[60px] hidden h-12 items-center gap-3 rounded-full bg-electric-lime-400 px-6 text-label-m font-medium text-shuttle-gray-950 transition-transform hover:scale-[1.03] lg:flex" type="button">
-          <CourseIcon className="size-5" name="share" />
-          Share
-        </button>
+        <CourseShareButton />
 
         <div className="max-w-[900px]">
           <h1 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.035em] sm:text-[36px]">
@@ -59,11 +60,17 @@ export function CourseHero() {
               sizes="(min-width: 1024px) 720px, calc(100vw - 48px)"
               src="/assets/course-details/hero/course-preview.png"
             />
-            <button aria-label="Play course preview" className="absolute left-1/2 top-1/2 grid size-[72px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[20px] bg-[#9d867f]/90 shadow-sm backdrop-blur-sm transition-transform hover:-translate-x-1/2 hover:-translate-y-1/2 hover:scale-105" type="button">
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 grid size-[72px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[20px] bg-[#9d867f]/90 shadow-sm backdrop-blur-sm"
+            >
               <span className="grid size-12 place-items-center rounded-full bg-white text-[#a98d83]">
                 <CourseIcon className="ml-1 size-6" name="play" />
               </span>
-            </button>
+            </div>
+            <p className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-shuttle-gray-950/75 px-4 py-2 text-label-s text-white backdrop-blur-sm">
+              Preview coming soon
+            </p>
           </div>
 
           <CourseSidebar />

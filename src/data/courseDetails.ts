@@ -2,14 +2,33 @@ export type CourseTab = "about" | "lessons" | "reviews";
 
 export const courseDetailsPath = "/courses/build-digital-asset";
 
+export const courseRatingBreakdown = [
+  { count: 720, stars: 5 },
+  { count: 120, stars: 4 },
+  { count: 21, stars: 3 },
+  { count: 12, stars: 2 },
+  { count: 16, stars: 1 },
+] as const;
+
+const reviewCount = courseRatingBreakdown.reduce(
+  (total, row) => total + row.count,
+  0,
+);
+const ratingTotal = courseRatingBreakdown.reduce(
+  (total, row) => total + row.count * row.stars,
+  0,
+);
+
 export const courseSummary = {
   title: "Build Digital Asset: A Comprehensive Guide",
   subtitle: "Unlock the Power of Digital Creation with Expert Guidance",
   author: "purepearl studio",
   level: "Intermediate",
-  rating: "4.8 (172 reviews)",
+  rating: Math.round((ratingTotal / reviewCount) * 10) / 10,
+  reviewCount,
   students: "199 Students",
-  lessonCount: "112 Lessons (24 hours)",
+  lessonCount: 112,
+  duration: "24 hours",
   price: 25,
 };
 
@@ -67,6 +86,11 @@ export const courseModules = [
       "Master the principles that drive impactful designs with lessons such as 'Color Theory in Digital Design' and 'Typography Essentials.' Elevate your visual communication skills.",
   },
   {
+    title: "Module 3: Advanced Techniques in Digital Creation",
+    description:
+      "Build on the fundamentals with advanced composition, reusable workflows, and practical production techniques for polished digital assets.",
+  },
+  {
     title: "Module 4: User-Centric Design Strategies",
     description:
       "Understand 'Design Thinking in Digital Creation' and delve into 'User Experience (UX) Essentials.' Craft digital assets with a focus on user-centric design.",
@@ -93,7 +117,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-08.png",
     name: "PurePearl Studio",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "September 12, 2025",
+    dateTime: "2025-09-12",
+    rating: 5,
     quote:
       "The course provided me with a comprehensive understanding of digital asset creation. The lessons were in-depth, practical, and immediately applicable to my work. Highly recommended!",
   },
@@ -101,7 +127,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-04.png",
     name: "Albert Flores",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "August 28, 2025",
+    dateTime: "2025-08-28",
+    rating: 5,
     quote:
       "This course transformed my approach to digital design. The combination of theory, hands-on exercises, and real-world applications made it a truly enriching experience. Excited to implement what I've learned!",
   },
@@ -109,7 +137,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-03.png",
     name: "Cody Fisher",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "August 3, 2025",
+    dateTime: "2025-08-03",
+    rating: 4,
     quote:
       "The project showcase and critique module created a collaborative environment where I could showcase my work, receive valuable feedback, and refine my skills. It added a unique and valuable dimension to the learning process.",
   },
@@ -117,7 +147,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-06.png",
     name: "Brooklyn Simmons",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "July 19, 2025",
+    dateTime: "2025-07-19",
+    rating: 5,
     quote:
       "The lessons on optimizing digital assets for various platforms were particularly insightful. The course adapts to the evolving digital landscape, and the engaging content kept me motivated throughout.",
   },

@@ -10,13 +10,15 @@ import {
 
 import { CourseIcon } from "./CourseIcon";
 
+const remainingLessonCount = courseSummary.lessonCount - lessonPreview.length;
+
 export function CourseSidebar() {
   return (
     <aside className="relative z-20 rounded-[24px] border border-shuttle-gray-200 bg-white p-10 text-shuttle-gray-950 lg:h-[960px]">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
           <h2 className="font-heading text-heading-xs font-semibold tracking-[-0.03em]">
-            {courseSummary.lessonCount}
+            {courseSummary.lessonCount} Lessons ({courseSummary.duration})
           </h2>
 
           <div className="flex flex-col gap-3">
@@ -29,7 +31,9 @@ export function CourseSidebar() {
                 <span className="whitespace-nowrap text-persian-blue-800">{lesson.duration}</span>
               </div>
             ))}
-            <p className="text-body-m text-shuttle-gray-700">99 more videos</p>
+            <p className="text-body-m text-shuttle-gray-700">
+              {remainingLessonCount} more lessons
+            </p>
           </div>
         </div>
 
@@ -85,9 +89,12 @@ export function CourseSidebar() {
             Ready to Dive In? Enroll Now and Start Building Your Digital Future!
           </p>
 
-          <button className="h-[35px] w-fit rounded-full border border-shuttle-gray-200 px-4 text-label-m transition-colors hover:bg-shuttle-gray-50" type="button">
+          <Link
+            className="flex h-[35px] w-fit items-center rounded-full border border-shuttle-gray-200 px-4 text-label-m transition-colors hover:bg-shuttle-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-persian-blue-800"
+            href="/creators"
+          >
             See Full Profile
-          </button>
+          </Link>
         </div>
       </div>
     </aside>
