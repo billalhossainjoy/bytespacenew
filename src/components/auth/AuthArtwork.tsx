@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const assetRoot = "/assets/auth/register";
 
-export function RegisterArtwork() {
+export function AuthArtwork() {
   return (
     <div aria-hidden="true" className="absolute inset-0 hidden xl:block">
       <Image
