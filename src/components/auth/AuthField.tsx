@@ -1,6 +1,7 @@
 type AuthFieldProps = {
   autoComplete: string;
   label: string;
+  minLength?: number;
   name: string;
   placeholder: string;
   type: "email" | "password" | "text";
@@ -9,6 +10,7 @@ type AuthFieldProps = {
 export function AuthField({
   autoComplete,
   label,
+  minLength,
   name,
   placeholder,
   type,
@@ -19,6 +21,7 @@ export function AuthField({
       <input
         autoComplete={autoComplete}
         className="mt-2 h-[52px] w-full rounded-xl border border-shuttle-gray-100 bg-white px-6 text-body-s text-shuttle-gray-950 outline-none transition-colors placeholder:text-shuttle-gray-400 focus:border-persian-blue-800"
+        minLength={minLength}
         name={name}
         placeholder={placeholder}
         required
