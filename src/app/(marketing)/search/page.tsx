@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   description: "Search and discover your next ByteSpace course.",
 };
 
-export default function SearchPage() {
-  return <SearchPageContent />;
+type SearchPageProps = {
+  searchParams: Promise<{ q?: string | string[] }>;
+};
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const { q } = await searchParams;
+  const initialQuery = Array.isArray(q) ? (q[0] ?? "") : (q ?? "");
+
+  return <SearchPageContent initialQuery={initialQuery} />;
 }

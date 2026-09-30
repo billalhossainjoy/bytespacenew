@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function CreatorCta() {
   return (
@@ -80,12 +81,12 @@ export function CreatorCta() {
           course on the ByteSpace Course Library.
         </p>
 
-        <a
+        <Link
           className="bg-electric-lime-400 mt-10 inline-flex items-center justify-center rounded-full px-6 py-3 text-label-l font-medium text-shuttle-gray-950 transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-          href="#course-creator"
+          href="/register"
         >
           Join as Creator
-        </a>
+        </Link>
       </div>
     </section>
   );

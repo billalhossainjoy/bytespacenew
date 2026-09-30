@@ -16,6 +16,7 @@ const mobileNavigation = [
   ...navigation,
   { label: "Sign In", href: "/login" },
   { label: "Join Us", href: "/register" },
+  { label: "Shopping Bag", href: "/cart" },
 ];
 
 function BagIcon() {
@@ -118,13 +119,13 @@ export function Header() {
           <Link className="transition-opacity hover:opacity-70" href="/register">
             Join Us
           </Link>
-          <button
+          <Link
             aria-label="Open shopping bag"
             className="transition-opacity hover:opacity-70"
-            type="button"
+            href="/cart"
           >
             <BagIcon />
-          </button>
+          </Link>
         </div>
 
         <button
