@@ -14,7 +14,7 @@ const ratingRows = [
 
 export function ReviewsCourse() {
   return (
-    <div className="mt-10 text-shuttle-gray-700" role="tabpanel">
+    <div className="mt-10 text-shuttle-gray-700">
       <h2 className="font-heading text-heading-xs font-semibold tracking-[-0.03em] text-shuttle-gray-950">
         What Learners Are Saying
       </h2>
