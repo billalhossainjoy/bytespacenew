@@ -7,6 +7,7 @@ import { CourseCard } from "@/components/landing/courses/CourseCard";
 import { courses } from "@/data/courses";
 
 const assetRoot = "/assets/search-page";
+const coursesPerPage = 3;
 
 const searchImages = [
   `${assetRoot}/thumbnails/course-01-figma-design.png`,
@@ -29,13 +30,10 @@ const searchCategories = [
   "Cooking",
 ];
 
-const searchCourses = Array.from({ length: 3 }, (_, groupIndex) =>
-  courses.map((course, courseIndex) => ({
-    ...course,
-    id: groupIndex * courses.length + course.id,
-    image: searchImages[courseIndex],
-  })),
-).flat();
+const searchCourses = courses.map((course, courseIndex) => ({
+  ...course,
+  image: searchImages[courseIndex],
+}));
 
 type IconProps = {
   alt?: string;
@@ -58,9 +56,9 @@ function SearchIcon({ alt = "", file, height, width }: IconProps) {
 export function SearchPageContent() {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Featured");
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const visibleCourses = useMemo(() => {
+  const filteredCourses = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
     return searchCourses.filter((course) => {
@@ -75,6 +73,22 @@ export function SearchPageContent() {
       return matchesQuery && matchesCategory;
     });
   }, [query, selectedCategory]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / coursesPerPage));
+  const visibleCourses = filteredCourses.slice(
+    (currentPage - 1) * coursesPerPage,
+    currentPage * coursesPerPage,
+  );
+
+  function updateQuery(value: string) {
+    setQuery(value);
+    setCurrentPage(1);
+  }
+
+  function chooseCategory(category: string) {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  }
 
   return (
     <main>
@@ -102,7 +116,7 @@ export function SearchPageContent() {
               <SearchIcon file="search.png" height={24} width={24} />
               <input
                 className="min-w-0 flex-1 bg-transparent text-body-l outline-none placeholder:text-shuttle-gray-400"
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => updateQuery(event.target.value)}
                 placeholder="Search"
                 type="search"
                 value={query}
@@ -156,7 +170,7 @@ export function SearchPageContent() {
                       : "bg-shuttle-gray-50 text-shuttle-gray-700 hover:bg-shuttle-gray-100"
                   }`}
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => chooseCategory(category)}
                   type="button"
                 >
                   {category}
@@ -165,7 +179,7 @@ export function SearchPageContent() {
             })}
           </div>
 
-          {visibleCourses.length > 0 ? (
+          {filteredCourses.length > 0 ? (
             <div className="mt-20 grid justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3">
               {visibleCourses.map((course) => (
                 <CourseCard course={course} key={course.id} />
@@ -184,40 +198,41 @@ export function SearchPageContent() {
             </div>
           )}
 
-          <nav
-            aria-label="Course result pages"
-            className="mt-[72px] flex h-12 items-center justify-center gap-6"
-          >
-            <PaginationArrow
-              direction="left"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-            />
-            <div className="flex items-center gap-6">
-              {[1, 2, 3, 4, 5].map((page) => (
-                <button
-                  aria-current={currentPage === page ? "page" : undefined}
-                  className={`font-heading text-[20px] leading-7 ${
-                    currentPage === page
-                      ? "font-semibold text-shuttle-gray-950"
-                      : page < currentPage
-                        ? "font-normal text-shuttle-gray-200"
-                        : "font-normal text-shuttle-gray-950"
-                  }`}
-                  key={page}
-                  onClick={() => setCurrentPage(page)}
-                  type="button"
-                >
-                  {page}
-                </button>
-              ))}
-            </div>
-            <PaginationArrow
-              direction="right"
-              disabled={currentPage === 5}
-              onClick={() => setCurrentPage((page) => Math.min(5, page + 1))}
-            />
-          </nav>
+          {filteredCourses.length > coursesPerPage ? (
+            <nav
+              aria-label="Course result pages"
+              className="mt-[72px] flex h-12 items-center justify-center gap-6"
+            >
+              <PaginationArrow
+                direction="left"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+              />
+              <div className="flex items-center gap-6">
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                  <button
+                    aria-current={currentPage === page ? "page" : undefined}
+                    aria-label={`Page ${page}`}
+                    className={`font-heading text-[20px] leading-7 ${
+                      currentPage === page
+                        ? "font-semibold text-shuttle-gray-950"
+                        : "font-normal text-shuttle-gray-700"
+                    }`}
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    type="button"
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+              <PaginationArrow
+                direction="right"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+              />
+            </nav>
+          ) : null}
         </div>
       </section>
     </main>
