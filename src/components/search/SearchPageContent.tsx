@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 
 import { CourseCard } from "@/components/landing/courses/CourseCard";
 import { courses } from "@/data/courses";
@@ -56,12 +56,15 @@ function SearchIcon({ alt = "", file, height, width }: IconProps) {
 export function SearchPageContent() {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Featured");
+  const [level, setLevel] = useState("all");
+  const [sort, setSort] = useState("relevant");
+  const [filtersExpanded, setFiltersExpanded] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredCourses = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return searchCourses.filter((course) => {
+    const matchingCourses = searchCourses.filter((course) => {
       const matchesQuery =
         normalizedQuery.length === 0 ||
         course.title.toLowerCase().includes(normalizedQuery) ||
@@ -69,10 +72,17 @@ export function SearchPageContent() {
       const matchesCategory =
         selectedCategory === "Featured" ||
         course.categories.includes(selectedCategory);
+      const matchesLevel = level === "all" || course.level.toLowerCase() === level;
 
-      return matchesQuery && matchesCategory;
+      return matchesQuery && matchesCategory && matchesLevel;
     });
-  }, [query, selectedCategory]);
+
+    if (sort === "title") {
+      return [...matchingCourses].sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    return matchingCourses;
+  }, [level, query, selectedCategory, sort]);
 
   const totalPages = Math.max(1, Math.ceil(filteredCourses.length / coursesPerPage));
   const visibleCourses = filteredCourses.slice(
@@ -88,6 +98,21 @@ export function SearchPageContent() {
   function chooseCategory(category: string) {
     setSelectedCategory(category);
     setCurrentPage(1);
+  }
+
+  function chooseLevel(value: string) {
+    setLevel(value);
+    setCurrentPage(1);
+  }
+
+  function chooseSort(value: string) {
+    setSort(value);
+    setCurrentPage(1);
+  }
+
+  function submitSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    document.getElementById("courses")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -108,7 +133,7 @@ export function SearchPageContent() {
 
           <form
             className="mx-auto mt-6 flex max-w-[624px] flex-col gap-3 sm:flex-row sm:gap-4"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={submitSearch}
             role="search"
           >
             <label className="flex h-[52px] flex-1 items-center gap-4 rounded-full bg-white px-6 text-shuttle-gray-950">
@@ -124,11 +149,10 @@ export function SearchPageContent() {
             </label>
 
             <button
-              className="flex h-[52px] items-center justify-center gap-4 rounded-full bg-electric-lime-400 px-6 text-label-l font-medium text-shuttle-gray-950 sm:w-[146px]"
-              type="button"
+              className="flex h-[52px] items-center justify-center rounded-full bg-electric-lime-400 px-6 text-label-l font-medium text-shuttle-gray-950 transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-[146px]"
+              type="submit"
             >
-              Courses
-              <SearchIcon file="chevron-down.png" height={8} width={12} />
+              Search
             </button>
           </form>
         </div>
@@ -138,46 +162,87 @@ export function SearchPageContent() {
         <div className="mx-auto max-w-[1200px]">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-4">
-              <FilterButton icon="filter.png" iconHeight={16} iconWidth={16}>
-                Filter
+              <FilterButton
+                controls="course-categories"
+                expanded={filtersExpanded}
+                icon="filter.png"
+                iconHeight={16}
+                iconWidth={16}
+                onClick={() => setFiltersExpanded((expanded) => !expanded)}
+              >
+                Filters
               </FilterButton>
-              <FilterButton icon="level.png" iconHeight={16} iconWidth={15}>
-                Level
-              </FilterButton>
-              <FilterButton icon="category.png" iconHeight={20} iconWidth={19}>
-                Category
-              </FilterButton>
+              <SelectFilter
+                ariaLabel="Course level"
+                icon="level.png"
+                iconHeight={16}
+                iconWidth={15}
+                label={level === "all" ? "Level" : level === "beginner" ? "Beginner" : "Intermediate"}
+                onChange={chooseLevel}
+                options={[
+                  { label: "All levels", value: "all" },
+                  { label: "Beginner", value: "beginner" },
+                  { label: "Intermediate", value: "intermediate" },
+                ]}
+                value={level}
+              />
+              <SelectFilter
+                ariaLabel="Course category"
+                icon="category.png"
+                iconHeight={20}
+                iconWidth={19}
+                label={selectedCategory === "Featured" ? "Category" : selectedCategory}
+                onChange={chooseCategory}
+                options={searchCategories.map((category) => ({
+                  label: category === "Featured" ? "All categories" : category,
+                  value: category,
+                }))}
+                value={selectedCategory}
+              />
             </div>
 
-            <FilterButton icon="sort.png" iconHeight={12} iconWidth={18}>
-              Most relevant
-            </FilterButton>
+            <SelectFilter
+              ariaLabel="Sort courses"
+              icon="sort.png"
+              iconHeight={12}
+              iconWidth={18}
+              label={sort === "relevant" ? "Most relevant" : "Course title"}
+              onChange={chooseSort}
+              options={[
+                { label: "Most relevant", value: "relevant" },
+                { label: "Course title", value: "title" },
+              ]}
+              value={sort}
+            />
           </div>
 
-          <div
-            aria-label="Course categories"
-            className="mt-8 flex flex-wrap gap-4"
-          >
-            {searchCategories.map((category) => {
-              const selected = selectedCategory === category;
+          {filtersExpanded ? (
+            <div
+              aria-label="Course categories"
+              className="mt-8 flex flex-wrap gap-4"
+              id="course-categories"
+            >
+              {searchCategories.map((category) => {
+                const selected = selectedCategory === category;
 
-              return (
-                <button
-                  aria-pressed={selected}
-                  className={`h-10 rounded-full px-4 text-label-s transition-colors ${
-                    selected
-                      ? "bg-electric-lime-400 font-medium text-shuttle-gray-950"
-                      : "bg-shuttle-gray-50 text-shuttle-gray-700 hover:bg-shuttle-gray-100"
-                  }`}
-                  key={category}
-                  onClick={() => chooseCategory(category)}
-                  type="button"
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
+                return (
+                  <button
+                    aria-pressed={selected}
+                    className={`h-10 rounded-full px-4 text-label-s transition-colors ${
+                      selected
+                        ? "bg-electric-lime-400 font-medium text-shuttle-gray-950"
+                        : "bg-shuttle-gray-50 text-shuttle-gray-700 hover:bg-shuttle-gray-100"
+                    }`}
+                    key={category}
+                    onClick={() => chooseCategory(category)}
+                    type="button"
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          ) : null}
 
           {filteredCourses.length > 0 ? (
             <div className="mt-20 grid justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -241,25 +306,75 @@ export function SearchPageContent() {
 
 type FilterButtonProps = {
   children: string;
+  controls: string;
+  expanded: boolean;
   icon: string;
   iconHeight: number;
   iconWidth: number;
+  onClick: () => void;
 };
 
 function FilterButton({
   children,
+  controls,
+  expanded,
   icon,
   iconHeight,
   iconWidth,
+  onClick,
 }: FilterButtonProps) {
   return (
     <button
+      aria-controls={controls}
+      aria-expanded={expanded}
       className="flex h-12 items-center gap-2 rounded-full border border-shuttle-gray-200 bg-white px-4 text-label-s text-shuttle-gray-700 transition-colors hover:bg-shuttle-gray-50"
+      onClick={onClick}
       type="button"
     >
       <SearchIcon file={icon} height={iconHeight} width={iconWidth} />
       {children}
     </button>
+  );
+}
+
+type SelectFilterProps = {
+  ariaLabel: string;
+  icon: string;
+  iconHeight: number;
+  iconWidth: number;
+  label: string;
+  onChange: (value: string) => void;
+  options: { label: string; value: string }[];
+  value: string;
+};
+
+function SelectFilter({
+  ariaLabel,
+  icon,
+  iconHeight,
+  iconWidth,
+  label,
+  onChange,
+  options,
+  value,
+}: SelectFilterProps) {
+  return (
+    <label className="relative flex h-12 items-center gap-2 rounded-full border border-shuttle-gray-200 bg-white px-4 text-label-s text-shuttle-gray-700 transition-colors hover:bg-shuttle-gray-50">
+      <SearchIcon file={icon} height={iconHeight} width={iconWidth} />
+      <span className="max-w-48 truncate">{label}</span>
+      <select
+        aria-label={ariaLabel}
+        className="absolute inset-0 cursor-pointer appearance-none rounded-full opacity-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-persian-blue-800"
+        onChange={(event) => onChange(event.target.value)}
+        value={value}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 
