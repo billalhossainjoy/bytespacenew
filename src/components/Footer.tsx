@@ -3,21 +3,21 @@ import Link from "next/link";
 
 const footerNavigation = [
   [
-    { label: "Featured Courses", href: "#courses" },
-    { label: "Featured Categories", href: "#learning-paths" },
-    { label: "Business", href: "#courses" },
-    { label: "IT", href: "#courses" },
-    { label: "Design", href: "#courses" },
+    { label: "Featured Courses", href: "/#courses" },
+    { label: "Featured Categories", href: "/#learning-paths" },
+    { label: "Business", href: "/#courses" },
+    { label: "IT", href: "/#courses" },
+    { label: "Design", href: "/#courses" },
   ],
   [
-    { label: "Development", href: "#courses" },
-    { label: "Marketing", href: "#courses" },
-    { label: "Photography", href: "#courses" },
-    { label: "Finance", href: "#courses" },
-    { label: "Sport", href: "#courses" },
+    { label: "Development", href: "/#courses" },
+    { label: "Marketing", href: "/#courses" },
+    { label: "Photography", href: "/#courses" },
+    { label: "Finance", href: "/#courses" },
+    { label: "Sport", href: "/#courses" },
   ],
   [
-    { label: "Become a Creator", href: "#join-as-creator" },
+    { label: "Become a Creator", href: "/#join-as-creator" },
     { label: "Affiliate Program", href: "/affiliate-program" },
     { label: "Contact", href: "/contact" },
     { label: "Help", href: "/help" },
@@ -112,7 +112,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-5 border-t border-shuttle-gray-200 pt-6 text-body-xs sm:flex-row sm:items-center sm:justify-between lg:absolute lg:inset-x-0 lg:top-[434px] lg:mt-0 lg:h-[42px]">
-          <p>@ 2023 ByteSpace. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ByteSpace. All rights reserved.</p>
 
           <nav aria-label="Legal navigation">
             <ul className="flex flex-wrap gap-x-6 gap-y-3">
