@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { courses } from "@/data/courses";
+
 const gridBackground = {
   backgroundImage:
     "linear-gradient(rgba(71, 130, 238, 0.52) 1px, transparent 1px), linear-gradient(90deg, rgba(71, 130, 238, 0.52) 1px, transparent 1px)",
@@ -53,7 +55,9 @@ export function CreatorProfileHero() {
 
         <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
           <span className="rounded-full bg-white px-5 py-3 text-label-m text-shuttle-gray-950">
-            <strong className="mr-2 font-medium text-persian-blue-800">3</strong>
+            <strong className="mr-2 font-medium text-persian-blue-800">
+              {courses.length}
+            </strong>
             Products
           </span>
           <span className="rounded-full bg-white px-5 py-3 text-label-m text-shuttle-gray-950">
