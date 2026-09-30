@@ -9,7 +9,7 @@ import { courseDetailsPath } from "@/data/courseDetails";
 const navigation = [
   { label: "Home", href: "/" },
   { label: "Courses", href: courseDetailsPath },
-  { label: "Creators", href: "/#creators" },
+  { label: "Creators", href: "/creators" },
 ];
 
 const mobileNavigation = [
