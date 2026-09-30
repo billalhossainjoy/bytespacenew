@@ -9,6 +9,7 @@ export type Course = {
   rating: number;
   price: number;
   href: string;
+  slug: string;
 };
 
 export const courseCategories = [
@@ -42,7 +43,8 @@ export const courses: Course[] = [
     categories: ["UI/UX Design", "Graphic Design", "Web Development"],
     rating: 4.5,
     price: 25,
-    href: courseDetailsPath,
+    href: "/courses/learn-figma-from-basic",
+    slug: "learn-figma-from-basic",
   },
   {
     id: 2,
@@ -53,6 +55,7 @@ export const courses: Course[] = [
     rating: 4.5,
     price: 25,
     href: courseDetailsPath,
+    slug: "build-digital-asset",
   },
   {
     id: 3,
@@ -62,7 +65,8 @@ export const courses: Course[] = [
     categories: ["Data Science", "Web Development"],
     rating: 4.5,
     price: 25,
-    href: courseDetailsPath,
+    href: "/courses/power-of-big-data",
+    slug: "power-of-big-data",
   },
   {
     id: 4,
@@ -72,7 +76,8 @@ export const courses: Course[] = [
     categories: ["Productivity", "Freelance & Entrepreneurship"],
     rating: 4.5,
     price: 25,
-    href: courseDetailsPath,
+    href: "/courses/balancing-productivity-and-work",
+    slug: "balancing-productivity-and-work",
   },
   {
     id: 5,
@@ -82,7 +87,8 @@ export const courses: Course[] = [
     categories: ["Freelance & Entrepreneurship", "Marketing"],
     rating: 4.5,
     price: 25,
-    href: courseDetailsPath,
+    href: "/courses/mastering-money-management",
+    slug: "mastering-money-management",
   },
   {
     id: 6,
@@ -92,6 +98,11 @@ export const courses: Course[] = [
     categories: ["Marketing", "Creative Marketing", "Social Media"],
     rating: 4.5,
     price: 25,
-    href: courseDetailsPath,
+    href: "/courses/from-idea-to-startup-success",
+    slug: "from-idea-to-startup-success",
   },
 ];
+
+export function getCourseBySlug(slug: string) {
+  return courses.find((course) => course.slug === slug);
+}
