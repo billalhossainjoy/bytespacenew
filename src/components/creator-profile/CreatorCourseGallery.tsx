@@ -12,6 +12,7 @@ const categories = Array.from(
 ).sort();
 
 type SelectControlProps = {
+  ariaLabel: string;
   icon: string;
   label: string;
   onChange: (value: string) => void;
@@ -20,6 +21,7 @@ type SelectControlProps = {
 };
 
 function SelectControl({
+  ariaLabel,
   icon,
   label,
   onChange,
@@ -29,10 +31,10 @@ function SelectControl({
   return (
     <label className="relative flex h-12 items-center gap-2 rounded-full border border-shuttle-gray-200 bg-white px-4 text-label-s text-shuttle-gray-700 transition-colors hover:bg-shuttle-gray-50">
       <Image alt="" height={18} src={`/assets/search-page/icons/${icon}`} width={18} />
-      <span>{label}</span>
+      <span className="max-w-48 truncate">{label}</span>
       <select
-        aria-label={label}
-        className="absolute inset-0 cursor-pointer appearance-none rounded-full opacity-0"
+        aria-label={ariaLabel}
+        className="absolute inset-0 cursor-pointer appearance-none rounded-full opacity-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-persian-blue-800"
         onChange={(event) => onChange(event.target.value)}
         value={value}
       >
@@ -50,22 +52,23 @@ export function CreatorCourseGallery() {
   const [category, setCategory] = useState("all");
   const [level, setLevel] = useState("all");
   const [sort, setSort] = useState("relevant");
+  const hasActiveFilters = category !== "all" || level !== "all";
 
   const visibleCourses = useMemo(() => {
-    const matchingCourses = creatorCourses.filter(
-      (course) => category === "all" || course.categories.includes(category),
-    );
+    const matchingCourses = creatorCourses.filter((course) => {
+      const matchesCategory =
+        category === "all" || course.categories.includes(category);
+      const matchesLevel = level === "all" || course.level.toLowerCase() === level;
+
+      return matchesCategory && matchesLevel;
+    });
 
     if (sort === "title") {
       return [...matchingCourses].sort((a, b) => a.title.localeCompare(b.title));
     }
 
-    if (sort === "price") {
-      return [...matchingCourses].sort((a, b) => a.price - b.price);
-    }
-
     return matchingCourses;
-  }, [category, sort]);
+  }, [category, level, sort]);
 
   function resetFilters() {
     setCategory("all");
@@ -78,26 +81,30 @@ export function CreatorCourseGallery() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-4">
             <button
-              className="flex h-12 items-center gap-2 rounded-full border border-shuttle-gray-200 bg-white px-4 text-label-s text-shuttle-gray-700 transition-colors hover:bg-shuttle-gray-50"
+              className="flex h-12 items-center gap-2 rounded-full border border-shuttle-gray-200 bg-white px-4 text-label-s text-shuttle-gray-700 transition-colors hover:bg-shuttle-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-persian-blue-800 disabled:cursor-not-allowed disabled:opacity-45"
+              disabled={!hasActiveFilters}
               onClick={resetFilters}
               type="button"
             >
               <Image alt="" height={16} src="/assets/search-page/icons/filter.png" width={16} />
-              Filter
+              Clear filters
             </button>
 
             <SelectControl
+              ariaLabel="Course level"
               icon="level.png"
-              label={level === "all" ? "Level" : "Beginner"}
+              label={level === "all" ? "Level" : level === "beginner" ? "Beginner" : "Intermediate"}
               onChange={setLevel}
               options={[
                 { label: "All levels", value: "all" },
                 { label: "Beginner", value: "beginner" },
+                { label: "Intermediate", value: "intermediate" },
               ]}
               value={level}
             />
 
             <SelectControl
+              ariaLabel="Course category"
               icon="category.png"
               label={category === "all" ? "Category" : category}
               onChange={setCategory}
@@ -110,13 +117,13 @@ export function CreatorCourseGallery() {
           </div>
 
           <SelectControl
+            ariaLabel="Sort courses"
             icon="sort.png"
-            label={sort === "relevant" ? "Most relevant" : sort === "title" ? "Course title" : "Lowest price"}
+            label={sort === "relevant" ? "Most relevant" : "Course title"}
             onChange={setSort}
             options={[
               { label: "Most relevant", value: "relevant" },
               { label: "Course title", value: "title" },
-              { label: "Lowest price", value: "price" },
             ]}
             value={sort}
           />
@@ -130,7 +137,7 @@ export function CreatorCourseGallery() {
           </div>
         ) : (
           <p className="mt-16 text-center text-body-m text-shuttle-gray-700">
-            No courses match this category.
+            No courses match these filters.
           </p>
         )}
       </div>
