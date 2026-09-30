@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 import type { CourseTab } from "@/data/courseDetails";
 
 import { CourseHero } from "./CourseHero";
@@ -16,18 +12,26 @@ const tabPanels = {
   reviews: ReviewsCourse,
 };
 
-export function CourseDetailsPage() {
-  const [activeTab, setActiveTab] = useState<CourseTab>("about");
+type CourseDetailsPageProps = {
+  activeTab?: CourseTab;
+};
+
+export function CourseDetailsPage({ activeTab = "about" }: CourseDetailsPageProps) {
   const ActivePanel = tabPanels[activeTab];
 
   return (
     <main>
       <CourseHero />
 
-      <section className="bg-white px-6 pb-6 pt-16 lg:px-0">
+      <section
+        className={`relative z-10 bg-white px-6 pb-6 pt-16 lg:px-0 ${
+          activeTab === "lessons" ? "lg:pb-[98px]" : ""
+        }`}
+        id="course-content"
+      >
         <div className="mx-auto max-w-[1200px]">
-          <div className="lg:w-[720px]">
-            <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+          <div className={activeTab === "lessons" ? "lg:w-[723px]" : "lg:w-[720px]"}>
+            <CourseTabs activeTab={activeTab} />
             <ActivePanel />
           </div>
         </div>

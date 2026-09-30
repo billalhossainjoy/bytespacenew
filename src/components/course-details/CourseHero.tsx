@@ -50,14 +50,14 @@ export function CourseHero() {
         </div>
 
         <div className="mt-[54px] grid items-start gap-10 lg:grid-cols-[720px_412px] lg:gap-[68px]">
-          <div className="relative overflow-hidden rounded-[24px] bg-shuttle-gray-100">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-[24px] bg-shuttle-gray-100">
             <Image
               alt="Course instructor presenting the digital asset course"
-              className="h-auto w-full object-cover lg:h-[480px]"
-              height={479}
+              className="object-cover"
+              fill
               priority
+              sizes="(min-width: 1024px) 720px, calc(100vw - 48px)"
               src="/assets/course-details/hero/course-preview.png"
-              width={720}
             />
             <button aria-label="Play course preview" className="absolute left-1/2 top-1/2 grid size-[72px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[20px] bg-[#9d867f]/90 shadow-sm backdrop-blur-sm transition-transform hover:-translate-x-1/2 hover:-translate-y-1/2 hover:scale-105" type="button">
               <span className="grid size-12 place-items-center rounded-full bg-white text-[#a98d83]">

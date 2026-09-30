@@ -1,5 +1,7 @@
 export type CourseTab = "about" | "lessons" | "reviews";
 
+export const courseDetailsPath = "/courses/build-digital-asset";
+
 export const courseSummary = {
   title: "Build Digital Asset: A Comprehensive Guide",
   subtitle: "Unlock the Power of Digital Creation with Expert Guidance",
@@ -30,11 +32,11 @@ export const lessonPreview = [
 ];
 
 export const courseBenefits = [
-  { icon: "learning-resources.png", label: "Learning Resources" },
-  { icon: "lesson-video.png", label: "Quality Lesson Videos" },
-  { icon: "certificate.png", label: "Certificate of Completion" },
-  { icon: "consultation.png", label: "Private Consultation" },
-];
+  { icon: "resources", label: "Learning Resources" },
+  { icon: "video", label: "Quality Lesson Videos" },
+  { icon: "certificate", label: "Certificate of Completion" },
+  { icon: "consultation", label: "Private Consultation" },
+] as const;
 
 export const courseDescription = [
   "Embark on an enlightening exploration into the world of digital creation with our comprehensive course, \"Build Digital Assets: A Comprehensive Guide.\" This transformative learning experience invites you to delve deep into the intricacies of crafting impactful digital content. From laying the groundwork with foundational concepts to mastering advanced techniques, this guide is meticulously curated to empower you with the skills essential for navigating the dynamic landscape of digital asset creation.",

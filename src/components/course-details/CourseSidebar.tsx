@@ -1,14 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { courseBenefits, courseSummary, lessonPreview } from "@/data/courseDetails";
+import {
+  courseBenefits,
+  courseDetailsPath,
+  courseSummary,
+  lessonPreview,
+} from "@/data/courseDetails";
 
 import { CourseIcon } from "./CourseIcon";
 
-const benefitIcons = ["resources", "video", "certificate", "consultation"] as const;
-
 export function CourseSidebar() {
   return (
-    <aside className="rounded-[24px] border border-shuttle-gray-200 bg-white p-10 text-shuttle-gray-950 lg:h-[960px]">
+    <aside className="relative z-20 rounded-[24px] border border-shuttle-gray-200 bg-white p-10 text-shuttle-gray-950 lg:h-[960px]">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
           <h2 className="font-heading text-heading-xs font-semibold tracking-[-0.03em]">
@@ -39,9 +43,12 @@ export function CourseSidebar() {
             <span className="font-body text-body-m font-normal text-shuttle-gray-700">/lifetime</span>
           </p>
 
-          <button className="h-[46px] w-full rounded-full bg-electric-lime-400 px-6 py-3 text-label-l font-medium transition-transform hover:scale-[1.02]" type="button">
+          <Link
+            className="flex h-[46px] w-full items-center justify-center rounded-full bg-electric-lime-400 px-6 py-3 text-label-l font-medium transition-transform hover:scale-[1.02]"
+            href={`${courseDetailsPath}/lessons#course-content`}
+          >
             Enroll Now
-          </button>
+          </Link>
         </div>
 
         <h3 className="font-heading text-heading-xs font-semibold tracking-[-0.03em]">
@@ -49,9 +56,9 @@ export function CourseSidebar() {
         </h3>
 
         <ul className="flex h-[140px] flex-col gap-3">
-          {courseBenefits.map((benefit, index) => (
+          {courseBenefits.map((benefit) => (
             <li className="flex h-[26px] items-center gap-2 text-body-m text-shuttle-gray-700" key={benefit.label}>
-              <CourseIcon className="size-6 shrink-0 text-persian-blue-800" name={benefitIcons[index]} />
+              <CourseIcon className="size-6 shrink-0 text-persian-blue-800" name={benefit.icon} />
               {benefit.label}
             </li>
           ))}

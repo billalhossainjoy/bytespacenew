@@ -13,7 +13,7 @@ const sneakPeekImages = [
 
 export function AboutCourse() {
   return (
-    <div className="mt-10 text-shuttle-gray-700" role="tabpanel">
+    <div className="mt-10 text-shuttle-gray-700">
       <h2 className="font-heading text-heading-xs font-semibold tracking-[-0.03em] text-shuttle-gray-950">
         Description
       </h2>
@@ -25,7 +25,7 @@ export function AboutCourse() {
       </div>
 
       <h2 className="font-heading mt-8 text-heading-xs font-semibold tracking-[-0.03em] text-shuttle-gray-950">
-        Sneak Peak
+        Sneak Peek
       </h2>
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">

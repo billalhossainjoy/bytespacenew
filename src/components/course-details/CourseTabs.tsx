@@ -1,33 +1,37 @@
-import type { CourseTab } from "@/data/courseDetails";
+"use client";
 
-const tabs: { label: string; value: CourseTab }[] = [
-  { label: "About", value: "about" },
-  { label: "Lesson", value: "lessons" },
-  { label: "Reviews", value: "reviews" },
+import { useRouter } from "next/navigation";
+
+import { courseDetailsPath, type CourseTab } from "@/data/courseDetails";
+
+const tabs: { href: string; label: string; value: CourseTab }[] = [
+  { href: `${courseDetailsPath}#course-content`, label: "About", value: "about" },
+  { href: `${courseDetailsPath}/lessons#course-content`, label: "Lesson", value: "lessons" },
+  { href: `${courseDetailsPath}/reviews#course-content`, label: "Reviews", value: "reviews" },
 ];
 
 type CourseTabsProps = {
   activeTab: CourseTab;
-  onChange: (tab: CourseTab) => void;
 };
 
-export function CourseTabs({ activeTab, onChange }: CourseTabsProps) {
+export function CourseTabs({ activeTab }: CourseTabsProps) {
+  const router = useRouter();
+
   return (
-    <div aria-label="Course information" className="flex flex-wrap gap-4" role="tablist">
+    <div aria-label="Course sections" className="flex flex-wrap gap-4" role="group">
       {tabs.map((tab) => {
         const active = activeTab === tab.value;
 
         return (
           <button
-            aria-selected={active}
+            aria-pressed={active}
             className={`h-10 rounded-full px-4 text-label-s transition-colors ${
               active
                 ? "bg-electric-lime-400 font-medium text-shuttle-gray-950"
                 : "bg-shuttle-gray-50 text-shuttle-gray-700 hover:bg-shuttle-gray-100"
             }`}
             key={tab.value}
-            onClick={() => onChange(tab.value)}
-            role="tab"
+            onClick={() => router.push(tab.href)}
             type="button"
           >
             {tab.label}
