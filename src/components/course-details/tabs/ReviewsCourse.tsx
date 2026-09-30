@@ -1,16 +1,12 @@
 import Image from "next/image";
 
-import { reviews } from "@/data/courseDetails";
+import {
+  courseRatingBreakdown,
+  courseSummary,
+  reviews,
+} from "@/data/courseDetails";
 
 import { CourseIcon } from "../CourseIcon";
-
-const ratingRows = [
-  { count: 720, value: 82 },
-  { count: 120, value: 32 },
-  { count: 21, value: 10 },
-  { count: 12, value: 5 },
-  { count: 16, value: 4 },
-];
 
 export function ReviewsCourse() {
   return (
@@ -26,19 +22,34 @@ export function ReviewsCourse() {
         <div className="grid h-[112px] place-items-center rounded-[8px] bg-electric-lime-400 text-center text-shuttle-gray-950">
           <div>
             <p className="text-body-xs">Ratings</p>
-            <p className="font-heading text-[32px] font-semibold leading-none">4.7</p>
+            <p className="font-heading text-[32px] font-semibold leading-none">
+              {courseSummary.rating}
+            </p>
           </div>
         </div>
 
         <div className="space-y-2">
-          {ratingRows.map((row, index) => (
-            <div className="grid grid-cols-[1fr_120px_34px] items-center gap-4" key={row.count}>
+          {courseRatingBreakdown.map((row) => (
+            <div
+              aria-label={`${row.count} ${row.stars}-star reviews`}
+              className="grid grid-cols-[1fr_120px_34px] items-center gap-4"
+              key={row.stars}
+            >
               <div className="h-2 overflow-hidden rounded-full bg-shuttle-gray-100">
-                <div className="h-full rounded-full bg-electric-lime-400" style={{ width: `${row.value}%` }} />
+                <div
+                  className="h-full rounded-full bg-electric-lime-400"
+                  style={{
+                    width: `${(row.count / courseSummary.reviewCount) * 100}%`,
+                  }}
+                />
               </div>
               <div className="flex justify-end gap-1 text-shuttle-gray-700">
                 {Array.from({ length: 5 }, (_, starIndex) => (
-                  <CourseIcon className={`size-4 ${starIndex < 5 - index ? "opacity-100" : "opacity-35"}`} key={starIndex} name="star" />
+                  <CourseIcon
+                    className={`size-4 ${starIndex < row.stars ? "opacity-100" : "opacity-35"}`}
+                    key={starIndex}
+                    name="star"
+                  />
                 ))}
               </div>
               <span className="text-body-xs">{row.count}</span>

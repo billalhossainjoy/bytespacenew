@@ -7,7 +7,10 @@ import { CourseSidebar } from "./CourseSidebar";
 
 const courseStats = [
   { icon: "level", label: courseSummary.level },
-  { icon: "star", label: courseSummary.rating },
+  {
+    icon: "star",
+    label: `${courseSummary.rating} (${courseSummary.reviewCount} reviews)`,
+  },
   { icon: "students", label: courseSummary.students },
 ] as const;
 

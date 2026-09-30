@@ -2,14 +2,33 @@ export type CourseTab = "about" | "lessons" | "reviews";
 
 export const courseDetailsPath = "/courses/build-digital-asset";
 
+export const courseRatingBreakdown = [
+  { count: 720, stars: 5 },
+  { count: 120, stars: 4 },
+  { count: 21, stars: 3 },
+  { count: 12, stars: 2 },
+  { count: 16, stars: 1 },
+] as const;
+
+const reviewCount = courseRatingBreakdown.reduce(
+  (total, row) => total + row.count,
+  0,
+);
+const ratingTotal = courseRatingBreakdown.reduce(
+  (total, row) => total + row.count * row.stars,
+  0,
+);
+
 export const courseSummary = {
   title: "Build Digital Asset: A Comprehensive Guide",
   subtitle: "Unlock the Power of Digital Creation with Expert Guidance",
   author: "purepearl studio",
   level: "Intermediate",
-  rating: "4.8 (172 reviews)",
+  rating: Math.round((ratingTotal / reviewCount) * 10) / 10,
+  reviewCount,
   students: "199 Students",
-  lessonCount: "112 Lessons (24 hours)",
+  lessonCount: 112,
+  duration: "24 hours",
   price: 25,
 };
 
@@ -65,6 +84,11 @@ export const courseModules = [
     title: "Module 2: Design Principles for Impact",
     description:
       "Master the principles that drive impactful designs with lessons such as 'Color Theory in Digital Design' and 'Typography Essentials.' Elevate your visual communication skills.",
+  },
+  {
+    title: "Module 3: Advanced Techniques in Digital Creation",
+    description:
+      "Build on the fundamentals with advanced composition, reusable workflows, and practical production techniques for polished digital assets.",
   },
   {
     title: "Module 4: User-Centric Design Strategies",
