@@ -30,6 +30,7 @@
 
   --color-ink: #040819;
   --color-shuttle-gray-50: #f5f5f5;
+  --color-shuttle-gray-100: #e4e5e8;
   --color-shuttle-gray-200: #cfd1d6;
   --color-shuttle-gray-400: #8a919c;
   --color-shuttle-gray-700: #5c6068;
@@ -98,4 +99,11 @@
     radial-gradient(circle at 0% 100%, rgb(91 132 255 / 34%), transparent 35%),
     radial-gradient(circle at 100% 48%, rgb(190 255 0 / 30%), transparent 34%),
     #fff;
+}
+
+.auth-grid {
+  background-image:
+    linear-gradient(rgb(71 130 238 / 52%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(71 130 238 / 52%) 1px, transparent 1px);
+  background-size: 120px 120px;
 }
