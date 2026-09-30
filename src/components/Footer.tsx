@@ -40,7 +40,7 @@ export function Footer() {
             <Link
               aria-label="ByteSpace home"
               className="flex h-8 w-fit items-center gap-1.5"
-              href="#home"
+              href="/"
             >
               <Image
                 alt=""
