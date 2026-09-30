@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import type { Course } from "@/data/courses";
 
@@ -14,7 +15,7 @@ type CourseCardProps = {
 };
 
 export function CourseCard({ course }: CourseCardProps) {
-  return (
+  const card = (
     <article className="h-[384px] w-full max-w-[373px] rounded-[24px] border border-[#d6d8dc] bg-white p-4 transition-transform duration-200 hover:-translate-y-1">
       <div className="relative overflow-hidden rounded-[12px]">
         <Image
@@ -95,4 +96,14 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
     </article>
   );
+
+  if (course.href) {
+    return (
+      <Link aria-label={`View ${course.title}`} className="block w-full max-w-[373px]" href={course.href}>
+        {card}
+      </Link>
+    );
+  }
+
+  return card;
 }

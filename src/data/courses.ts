@@ -6,6 +6,7 @@ export type Course = {
   categories: string[];
   rating: number;
   price: number;
+  href?: string;
 };
 
 export const courseCategories = [
@@ -48,6 +49,7 @@ export const courses: Course[] = [
     categories: ["Digital Illustration", "Animation", "Graphic Design"],
     rating: 4.5,
     price: 25,
+    href: "/courses/build-digital-asset",
   },
   {
     id: 3,
