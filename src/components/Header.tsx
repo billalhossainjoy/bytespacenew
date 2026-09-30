@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "Courses", href: "#courses" },
-  { label: "Creators", href: "#creators" },
+  { label: "Home", href: "/" },
+  { label: "Courses", href: "/search" },
+  { label: "Creators", href: "/#creators" },
 ];
 
 function BagIcon() {
@@ -81,7 +81,7 @@ export function Header() {
         <Link
           aria-label="ByteSpace home"
           className="flex items-center gap-2.5"
-          href="#home"
+          href="/"
         >
           <Image
             alt=""
