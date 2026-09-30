@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 import {
   courseRatingBreakdown,
@@ -9,6 +12,11 @@ import {
 import { CourseIcon } from "../CourseIcon";
 
 export function ReviewsCourse() {
+  const [selectedRating, setSelectedRating] = useState<number | "all">("all");
+  const visibleReviews = reviews.filter(
+    (review) => selectedRating === "all" || review.rating === selectedRating,
+  );
+
   return (
     <div className="mt-10 text-shuttle-gray-700">
       <h2 className="font-heading text-heading-xs font-semibold tracking-[-0.03em] text-shuttle-gray-950">
@@ -63,16 +71,30 @@ export function ReviewsCourse() {
       </h2>
 
       <div className="mt-6 flex flex-wrap gap-4">
-        {["All rating", "5", "4", "3", "2", "1"].map((rating, index) => (
-          <button className={`flex h-10 items-center gap-2 rounded-full px-4 text-label-s ${index === 0 ? "bg-electric-lime-400 text-shuttle-gray-950" : "bg-shuttle-gray-50 text-shuttle-gray-700"}`} key={rating} type="button">
-            {index > 0 ? <CourseIcon className="size-4" name="star" /> : null}
-            {rating}
-          </button>
-        ))}
+        {(["all", 5, 4, 3, 2, 1] as const).map((rating) => {
+          const selected = selectedRating === rating;
+
+          return (
+            <button
+              aria-pressed={selected}
+              className={`flex h-10 items-center gap-2 rounded-full px-4 text-label-s transition-colors ${
+                selected
+                  ? "bg-electric-lime-400 text-shuttle-gray-950"
+                  : "bg-shuttle-gray-50 text-shuttle-gray-700 hover:bg-shuttle-gray-100"
+              }`}
+              key={rating}
+              onClick={() => setSelectedRating(rating)}
+              type="button"
+            >
+              {rating !== "all" ? <CourseIcon className="size-4" name="star" /> : null}
+              {rating === "all" ? "All ratings" : rating}
+            </button>
+          );
+        })}
       </div>
 
       <div className="mt-8 space-y-6">
-        {reviews.map((review) => (
+        {visibleReviews.map((review) => (
           <article className="min-h-[216px] rounded-[20px] border border-shuttle-gray-200 p-8" key={review.name}>
             <div className="flex items-start justify-between gap-6">
               <div className="flex items-center gap-4">
@@ -88,18 +110,27 @@ export function ReviewsCourse() {
                   <p className="text-body-s">{review.role}</p>
                 </div>
               </div>
-              <time className="text-body-s" dateTime="2023">{review.date}</time>
+              <time className="text-body-s" dateTime={review.dateTime}>{review.date}</time>
             </div>
 
-            <div aria-label="5 out of 5 stars" className="mt-6 flex gap-1 text-shuttle-gray-700">
+            <div aria-label={`${review.rating} out of 5 stars`} className="mt-6 flex gap-1 text-shuttle-gray-700">
               {Array.from({ length: 5 }, (_, starIndex) => (
-                <CourseIcon className="size-5" key={starIndex} name="star" />
+                <CourseIcon
+                  className={`size-5 ${starIndex < review.rating ? "opacity-100" : "opacity-35"}`}
+                  key={starIndex}
+                  name="star"
+                />
               ))}
             </div>
 
             <p className="mt-6 text-body-m">&quot;{review.quote}&quot;</p>
           </article>
         ))}
+        {visibleReviews.length === 0 ? (
+          <p className="rounded-[20px] border border-shuttle-gray-200 p-8 text-center text-body-m">
+            No sample reviews match this rating yet.
+          </p>
+        ) : null}
       </div>
     </div>
   );

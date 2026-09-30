@@ -117,7 +117,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-08.png",
     name: "PurePearl Studio",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "September 12, 2025",
+    dateTime: "2025-09-12",
+    rating: 5,
     quote:
       "The course provided me with a comprehensive understanding of digital asset creation. The lessons were in-depth, practical, and immediately applicable to my work. Highly recommended!",
   },
@@ -125,7 +127,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-04.png",
     name: "Albert Flores",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "August 28, 2025",
+    dateTime: "2025-08-28",
+    rating: 5,
     quote:
       "This course transformed my approach to digital design. The combination of theory, hands-on exercises, and real-world applications made it a truly enriching experience. Excited to implement what I've learned!",
   },
@@ -133,7 +137,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-03.png",
     name: "Cody Fisher",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "August 3, 2025",
+    dateTime: "2025-08-03",
+    rating: 4,
     quote:
       "The project showcase and critique module created a collaborative environment where I could showcase my work, receive valuable feedback, and refine my skills. It added a unique and valuable dimension to the learning process.",
   },
@@ -141,7 +147,9 @@ export const reviews = [
     avatar: "/assets/hero/avatars/avatar-06.png",
     name: "Brooklyn Simmons",
     role: "UI/UX Designer",
-    date: "a year ago",
+    date: "July 19, 2025",
+    dateTime: "2025-07-19",
+    rating: 5,
     quote:
       "The lessons on optimizing digital assets for various platforms were particularly insightful. The course adapts to the evolving digital landscape, and the engaging content kept me motivated throughout.",
   },

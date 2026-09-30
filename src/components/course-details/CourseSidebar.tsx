@@ -89,9 +89,12 @@ export function CourseSidebar() {
             Ready to Dive In? Enroll Now and Start Building Your Digital Future!
           </p>
 
-          <button className="h-[35px] w-fit rounded-full border border-shuttle-gray-200 px-4 text-label-m transition-colors hover:bg-shuttle-gray-50" type="button">
+          <Link
+            className="flex h-[35px] w-fit items-center rounded-full border border-shuttle-gray-200 px-4 text-label-m transition-colors hover:bg-shuttle-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-persian-blue-800"
+            href="/creators"
+          >
             See Full Profile
-          </button>
+          </Link>
         </div>
       </div>
     </aside>
