@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { NewsletterForm } from "@/components/NewsletterForm";
+
 const footerNavigation = [
   [
     { label: "Featured Courses", href: "/#courses" },
@@ -59,36 +61,7 @@ export function Footer() {
               our newsletter.
             </p>
 
-            <form
-              action="#"
-              className="mt-[45px]"
-              method="post"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-                <label className="sr-only" htmlFor="footer-email">
-                  Email address
-                </label>
-                <input
-                  className="h-[52px] w-full rounded-full border border-shuttle-gray-200 bg-white px-6 text-body-m outline-none transition-colors placeholder:text-shuttle-gray-700 focus:border-persian-blue-800 sm:w-[376px]"
-                  id="footer-email"
-                  name="email"
-                  placeholder="Enter your email"
-                  required
-                  type="email"
-                />
-                <button
-                  className="bg-electric-lime-400 h-12 rounded-full px-6 text-label-l font-medium text-shuttle-gray-950 transition-transform hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-persian-blue-800"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </div>
-
-              <p className="mt-6 max-w-[504px] text-body-xs">
-                By subscribing, you agree to our Privacy Policy and consent to
-                receive updates from our company.
-              </p>
-            </form>
+            <NewsletterForm />
           </div>
 
           <nav aria-label="Footer navigation" className="lg:pt-[53px]">
